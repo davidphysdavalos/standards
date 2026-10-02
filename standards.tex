@@ -1,0 +1,74 @@
+% Plantilla para articulo en ingles con comandos personalizados David Davalos.
+\documentclass[letterpaper,12pt]{article} 
+
+% En Mac modernas, UTF-8 ya es nativo. Evitamos ucs y utf8x por incompatibilidades.
+\usepackage[T1]{fontenc} 
+\usepackage[spanish]{babel}
+\spanishdecimal{.}
+
+\usepackage{color}                    
+\usepackage{graphicx} 
+\usepackage{url}
+\usepackage{bm} % Greek bf
+\usepackage{anysize}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}  
+\usepackage{texdraw}  
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{cancel}
+\newcommand{\mcE}{\ensuremath{\mathcal{E}}} 
+\newcommand{\mcL}{\ensuremath{\mathcal{L}}} 
+% NOTA: Si usas pdflatex (por defecto en Mac), pstricks romperá la compilación.
+% Si necesitas pstricks, compila usando el motor XeLaTeX.
+%\usepackage[usenames,dvipsnames]{pstricks}
+%\pst-grad} % For gradients
+%\usepackage{pst-plot}
+
+\usepackage{hyperref}
+%%%%% De la tesis %%%%%%%%%%
+\usepackage[sc]{mathpazo} % ¡Esta es la fuente chida!
+\usepackage{lettrine}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{tikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Asegúrate de que el archivo 'definiciones.tex' esté en la misma carpeta
+\input{definiciones}
+
+% comandos locales
+\marginsize{1.5 cm}{1.5 cm}{-0.5 cm}{1 cm}
+\author{David Dávalos}                                 
+\date{\today}                                 
+\title{Estándarización de notación}     
+
+\begin{document} 
+\maketitle
+Estilo de bibligrafia que funciona bien para todos: \cite{zimansbook}
+\begin{itemize}
+\item Kets y bras: $\ket{\Psi}$  $\bra{\Psi}$ (en un documento poco denso en vectores de estado, recomiendo usar griegas mayusculas. Si el documento es pesado en vectores de estado, minusculas están bien, como $\ket{\psi}$).
+\item Matrices de densidad: $\rho$, $\psi$, $\sigma$.
+\item Observables: $A$, $B$, $G$, etc. Con $E$ reservado para POVMs.
+\item Espacios de Hilbert: ${\sf H}, {\sf M}$.
+\item Espacios de operadores: $\mathcal{B}(\sf H)$ (operadores acotados) o $\mathcal{L}(\sf H)$ (operadores lineales (para dimensión finita son lo mismo que acotados)), $\mathcal{T}(\sf H)$ (operadores trace-class), $\mathcal{S}(\sf H)$ (matrices de densidad).
+\item Se pueden usar definiciones de latex, no trabajen doble (en este punto ver el código fuente de este documento.):
+% ensuremath hace que jale bien dentro y fuera de ambientes matemáticos
+\newcommand{\mcT}{\ensuremath{\mathcal{T}}} %usualmente uno los pone arriba junto a los paquetes.
+$\mcT$, \mcT{} (esto fue escrito con un shortcut)
+\item Canales cuánticos: $\mathcal{E}$, $\mathcal{M}$ etc, y con corchetes $\mathcal{E}[\psi]$, $\mathcal{E}[\sigma]$, etc. $\mathcal{I}$ suele reservarse para instrumentos cuánticos (que no preservan la traza).
+\item Vectores de Bloch y en general vectores de promedios: $\vec r$.
+\item Todo promedio/valor esperado debe escribirse como $\langle A \rangle$. Dependiendo del contexto y la necesidad, pueden agregar como subindice el estado respecto al cual se hace el promedio.
+\item Matriz de Choi de un canal $\mcE$: $\tau_\mcE$ (observese que es compatible con la notación de matrices de densidad). Entonces, reserven $\tau$ para matrices de Choi (por defecto usen la versión normalizada, que se llama también \textit{estado de Jamio\l kowski}). Entonces $\tau_\mcE=(\text{id}_n \otimes \mcE)[\omega]$, con $\omega=\proj{\Omega}{\Omega}$ (donde ya deben saber que es $\ket{\Omega}$). Usualmente, en el contexto de matrices de Choi $n$ se entiende como la dimensión del espacio de Hilbert del sistema. Adapten eso a sus trabajos.
+\item Los regularmente llamados \textit{superoperadores}, como los canales o generadores tipo Lindblad, todos ellos están al mismo ``nivel'', entonces, para generadores de Lindblad se usa la misma notación: $\mcL[\rho]$. Úsense subindices a su criterio, por ejemplo, si $L$ está definido con operadores o parámetros que lo etiqueten $\mcL_{H, \beta}$.
+\end{itemize}
+
+
+% Tu contenido va aquí
+
+\medline % Cambiado de \medline por seguridad, a menos que esté en definiciones.tex
+\bibliographystyle{unsrt}
+\bibliography{labibliografia}
+\end{document}
